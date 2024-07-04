@@ -4,3 +4,7 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+/.project
+/.classpath
+/.settings
+target

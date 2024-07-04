@@ -26,7 +26,6 @@ import javax.swing.table.JTableHeader;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 import javax.swing.table.TableColumnModel;
-import sun.swing.SwingUtilities2;
 import testgroupedcolumns.GroupableColumnModel.IColumnGroup;
 
 /**
@@ -880,8 +879,7 @@ public class GroupableTableHeaderUI extends BasicTableHeaderUI {
 				if (Math.abs(draggedDistance) > (width / 2)) {
 
 					int selectedIndex
-									= SwingUtilities2.convertColumnIndexToModel(
-													header.getColumnModel(),
+									= header.getTable().convertColumnIndexToModel(
 													getSelectedColumnIndex());
 
 					if (newColumnIndex >= 0 && newColumnIndex < groupModel.getColumnCount()) {
@@ -893,10 +891,9 @@ public class GroupableTableHeaderUI extends BasicTableHeaderUI {
 
 					}
 
-					int viewIndex = SwingUtilities2.convertColumnIndexToView(header.getColumnModel(), selectedIndex);
+					int viewIndex = header.getTable().convertColumnIndexToView(selectedIndex);
 					selectColumn(
-									SwingUtilities2.convertColumnIndexToView(
-													header.getColumnModel(), selectedIndex),
+							header.getTable().convertColumnIndexToView(selectedIndex),
 									false);
 
 				}
@@ -1053,8 +1050,7 @@ public class GroupableTableHeaderUI extends BasicTableHeaderUI {
 									//Cache the selected column.
 									int viewIndex = getSelectedColumnIndex();
 									int selectedIndex
-													= SwingUtilities2.convertColumnIndexToModel(
-																	header.getColumnModel(),
+													= header.getTable().convertColumnIndexToModel(
 																	viewIndex);
 
 									if (shouldMove) {
@@ -1068,10 +1064,9 @@ public class GroupableTableHeaderUI extends BasicTableHeaderUI {
 									}
 
 									//Update the selected index.
-									viewIndex = SwingUtilities2.convertColumnIndexToView(header.getColumnModel(), selectedIndex);
+									viewIndex = header.getTable().convertColumnIndexToView(selectedIndex);
 									selectColumn(
-													SwingUtilities2.convertColumnIndexToView(
-																	header.getColumnModel(), selectedIndex),
+											header.getTable().convertColumnIndexToView(selectedIndex),
 													false);
 
 								}
